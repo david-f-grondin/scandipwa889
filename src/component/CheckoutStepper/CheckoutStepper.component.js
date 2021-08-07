@@ -37,18 +37,41 @@ export class CheckoutStepper extends Component {
         );
     }
 
+    renderFirstLineDivider(isFirstStep) {
+        if (!isFirstStep) {
+            return null;
+        }
+
+        return (
+            <div block="Step" elem="FirstLineDivider" />
+        );
+    }
+
+    renderLastLineDivider(isLastStep) {
+        if (!isLastStep) {
+            return null;
+        }
+
+        return (
+            <div block="Step" elem="LastLineDivider" />
+        );
+    }
+
     renderStep(step, index) {
-        const { currentStep } = this.props;
+        const { currentStep, steps } = this.props;
         const stepIndex = index + 1;
         const isFirstStep = stepIndex === 1;
+        const isLastStep = stepIndex === steps.length;
         const isHighlighted = currentStep >= stepIndex;
         const isCompleted = currentStep > stepIndex;
 
         return (
             <div block="Stepper" elem="Step">
+                { this.renderFirstLineDivider(isFirstStep) }
                 { this.renderStepNumber(isHighlighted, isCompleted, stepIndex) }
                 <b block="Step" elem="Description" mods={ { isHighlighted } }>{ step }</b>
                 { this.renderStepLineDivider(isHighlighted, isFirstStep) }
+                { this.renderLastLineDivider(isLastStep) }
             </div>
         );
     }

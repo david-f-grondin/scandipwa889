@@ -98,12 +98,9 @@
     }
 
     &-LineDivider {
-        height: 3px;
-        border-radius: 16px;
+        @extend .Line;
         background-color: var(--stepper-inactive-color);
-        position: absolute;
         width: calc(100% - 2 * #{$number-size});
-        top: 25%;
         left: calc(-50% + #{$number-size});
 
         span {
@@ -124,4 +121,25 @@
             }
         }
     }
+
+    &-FirstLineDivider {
+        @extend .Line;
+        background-color: var(--primary-base-color);
+        width: calc(50% - #{$number-size});
+        left: 0;
+    }
+
+    &-LastLineDivider {
+        @extend .Line;
+        background-color: var(--stepper-inactive-color);
+        width: calc(50% - #{$number-size});
+        right: 0;
+    }
+}
+
+.Line {
+    height: 3px;
+    border-radius: 16px;
+    top: 25%;
+    position: absolute;
 }
